@@ -1,0 +1,30 @@
+Description: use File::Temp's tmpnam() instead of POSIX'.
+ The latter is deprecated and throws loud warnings under 5.22,
+ which lead to test failures due to the equally deprecated
+ "use warnings fatal => 'ALL';".
+Origin: vendor
+Bug-Debian: https://bugs.debian.org/790348
+Author: gregor herrmann <gregoa@debian.org>
+Last-Update: 2015-06-29
+Forwarded: https://rt.cpan.org/Ticket/Display.html?id=105562
+Bug: https://rt.cpan.org/Ticket/Display.html?id=105562
+
+--- a/test.pl
++++ b/test.pl
+@@ -4,7 +4,7 @@
+ use Test::More tests => 29;
+ 
+ use List::Util qw(sum);
+-use File::Temp qw(tempfile tempdir);
++use File::Temp qw(tempfile tempdir tmpnam);
+ 
+ use_ok('CGI::SSI');
+ 
+@@ -65,7 +65,6 @@
+ 
+         # create a tmp file for testing.
+     use IO::File;
+-    use POSIX qw(tmpnam);
+     
+     my($filename,$fh); # Thanks, Perl Cookbook!
+     do { $filename = tmpnam() } until $fh = IO::File->new($filename, O_RDWR|O_CREAT|O_EXCL);

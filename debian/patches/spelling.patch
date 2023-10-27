@@ -1,0 +1,18 @@
+Description: fix a spelling mistake
+Origin: vendor
+Author: gregor herrmann <gregoa@debian.org>
+Last-Update: 2015-06-18
+Forwarded: https://rt.cpan.org/Ticket/Display.html?id=105339
+Bug: https://rt.cpan.org/Ticket/Display.html?id=105339
+
+--- a/SSI.pm
++++ b/SSI.pm
+@@ -778,7 +778,7 @@
+ 
+ Sets variables internal to the CGI::SSI object. (Not to be confused 
+ with the normal variables your script uses!) These variables may be used 
+-in test expressions, and retreived using $ssi->echo($varname). These
++in test expressions, and retrieved using $ssi->echo($varname). These
+ variables also will not be available in external, included resources.
+ 
+ =item $ssi->echo($varname)
